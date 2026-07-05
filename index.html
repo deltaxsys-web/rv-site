@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ranveer | Tech & Cybersecurity Enthusiast</title>
+<meta name="description" content="Portfolio of Ranveer - BCA Graduate, Tech, Coding & Cybersecurity Enthusiast" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:#030509;
+  --bg2:#070b14;
+  --card:rgba(0,255,170,.03);
+  --border:rgba(0,255,170,.15);
+  --accent:#00ffaa;
+  --accent2:#00d4ff;
+  --danger:#ff2d55;
+  --text:#d7e2ec;
+  --muted:#7a8b9c;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;overflow-x:hidden}
+.mono{font-family:'Fira Code',monospace}
+
+/* ===== BOOT SCREEN ===== */
+#boot{position:fixed;inset:0;background:#010203;z-index:1000;display:flex;flex-direction:column;justify-content:center;align-items:center;font-family:'Fira Code',monospace;transition:opacity .8s ease,visibility .8s}
+#boot.done{opacity:0;visibility:hidden}
+.boot-inner{width:min(620px,90%)}
+.boot-logo{font-family:'Orbitron',sans-serif;font-size:1.4rem;color:var(--accent);letter-spacing:.3em;margin-bottom:24px;text-shadow:0 0 20px rgba(0,255,170,.6)}
+#bootLines{font-size:.8rem;line-height:1.9;color:#6ee7b7;min-height:210px}
+#bootLines .ok{color:var(--accent)}
+#bootLines .info{color:var(--accent2)}
+#bootLines .warn{color:#fbbf24}
+#bootLines .grant{color:var(--accent);font-weight:700;text-shadow:0 0 12px rgba(0,255,170,.8)}
+.boot-bar{margin-top:20px;height:4px;background:rgba(0,255,170,.12);border-radius:4px;overflow:hidden}
+.boot-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));box-shadow:0 0 12px var(--accent);transition:width .3s}
+.boot-skip{margin-top:26px;color:#3d5566;font-size:.7rem;text-align:center;cursor:pointer}
+.boot-skip:hover{color:var(--accent)}
+
+/* ===== BACKGROUND FX ===== */
+#matrix{position:fixed;inset:0;z-index:0;opacity:.14}
+.grid-overlay{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(0,255,170,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,170,.03) 1px,transparent 1px);background-size:44px 44px}
+.scanlines{position:fixed;inset:0;z-index:2;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.12) 0 1px,transparent 1px 3px);mix-blend-mode:overlay}
+.vignette{position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.55) 100%)}
+
+section{position:relative;z-index:3;max-width:1100px;margin:0 auto;padding:100px 24px}
+h2.sec{font-family:'Orbitron',sans-serif;font-size:1.7rem;font-weight:700;margin-bottom:8px;letter-spacing:.08em;text-transform:uppercase}
+h2.sec span{color:var(--accent);text-shadow:0 0 16px rgba(0,255,170,.5)}
+.sec-sub{color:var(--muted);margin-bottom:48px;font-size:.85rem;font-family:'Fira Code',monospace}
+.sec-sub::before{content:'> ';color:var(--accent)}
+
+/* ===== NAV ===== */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(16px);background:rgba(3,5,9,.8);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:15px 24px}
+.logo{font-family:'Orbitron',sans-serif;font-weight:700;font-size:1.05rem;color:var(--text);text-decoration:none;letter-spacing:.12em}
+.logo span{color:var(--accent);text-shadow:0 0 14px rgba(0,255,170,.7)}
+.nav-links{display:flex;gap:26px;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.82rem;font-family:'Fira Code',monospace;transition:color .2s,text-shadow .2s}
+.nav-links a::before{content:'//';color:rgba(0,255,170,.35);margin-right:4px}
+.nav-links a:hover{color:var(--accent);text-shadow:0 0 10px rgba(0,255,170,.6)}
+.burger{display:none;background:none;border:1px solid var(--border);border-radius:6px;color:var(--accent);font-size:1.3rem;cursor:pointer;padding:4px 10px}
+
+/* ===== HERO ===== */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding-top:120px}
+.hero .hello{color:var(--accent);font-family:'Fira Code',monospace;margin-bottom:16px;font-size:.85rem}
+.hero .hello .blink{animation:blink 1s infinite}
+.status-chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);border-radius:20px;padding:5px 14px;font-family:'Fira Code',monospace;font-size:.7rem;color:var(--muted);margin-bottom:22px;width:fit-content}
+.status-chip .pulse{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);animation:pulse 1.6s infinite}
+@keyframes pulse{50%{opacity:.35}}
+.hero h1{font-family:'Orbitron',sans-serif;font-size:clamp(2.2rem,6.5vw,4.4rem);font-weight:900;line-height:1.12;letter-spacing:.03em}
+
+/* glitch */
+.glitch{position:relative;color:var(--accent);text-shadow:0 0 24px rgba(0,255,170,.45);display:inline-block}
+.glitch::before,.glitch::after{content:attr(data-text);position:absolute;left:0;top:0;width:100%;overflow:hidden}
+.glitch::before{color:var(--accent2);clip-path:inset(20% 0 55% 0);animation:gl1 2.8s infinite linear alternate}
+.glitch::after{color:var(--danger);clip-path:inset(60% 0 15% 0);animation:gl2 3.4s infinite linear alternate}
+@keyframes gl1{0%,86%{transform:none;opacity:0}88%{transform:translate(-4px,-2px);opacity:.85}92%{transform:translate(3px,1px);opacity:.85}96%{transform:translate(-2px,2px);opacity:.85}100%{transform:none;opacity:0}}
+@keyframes gl2{0%,90%{transform:none;opacity:0}92%{transform:translate(4px,2px);opacity:.8}96%{transform:translate(-3px,-1px);opacity:.8}100%{transform:none;opacity:0}}
+
+.typing{font-size:clamp(1rem,3vw,1.45rem);color:var(--accent2);margin-top:18px;min-height:2.2rem;font-family:'Fira Code',monospace}
+.typing .cursor{color:var(--accent);animation:blink 1s infinite}
+@keyframes blink{50%{opacity:0}}
+.hero p.intro{max-width:580px;color:var(--muted);margin-top:22px;line-height:1.75;font-size:1.02rem}
+.hero-btns{margin-top:38px;display:flex;gap:16px;flex-wrap:wrap}
+.btn{position:relative;display:inline-flex;align-items:center;gap:8px;padding:13px 30px;font-family:'Orbitron',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.1em;text-decoration:none;text-transform:uppercase;transition:all .25s;cursor:pointer;border:none;clip-path:polygon(12px 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%,0 12px)}
+.btn-primary{background:linear-gradient(90deg,var(--accent),#00cc88);color:#02150d}
+.btn-primary:hover{box-shadow:0 0 30px rgba(0,255,170,.5);transform:translateY(-3px)}
+.btn-outline{border:1px solid var(--accent);color:var(--accent);background:rgba(0,255,170,.05);outline:1px solid var(--accent);outline-offset:-1px}
+.btn-outline:hover{background:rgba(0,255,170,.14);box-shadow:0 0 24px rgba(0,255,170,.3);transform:translateY(-3px)}
+
+.hero-stats{display:flex;gap:34px;margin-top:56px;flex-wrap:wrap}
+.stat .num{font-family:'Orbitron',sans-serif;font-size:1.6rem;color:var(--accent);text-shadow:0 0 14px rgba(0,255,170,.5)}
+.stat .lbl{color:var(--muted);font-size:.75rem;font-family:'Fira Code',monospace;text-transform:uppercase;letter-spacing:.1em}
+
+/* ===== HUD CARDS ===== */
+.card{position:relative;background:var(--card);border:1px solid var(--border);padding:28px;backdrop-filter:blur(8px);transition:transform .25s,box-shadow .25s,border-color .25s}
+.card::before,.card::after{content:'';position:absolute;width:16px;height:16px;border-color:var(--accent);border-style:solid;opacity:.7;transition:all .25s}
+.card::before{top:-1px;left:-1px;border-width:2px 0 0 2px}
+.card::after{bottom:-1px;right:-1px;border-width:0 2px 2px 0}
+.card:hover{transform:translateY(-6px);border-color:rgba(0,255,170,.5);box-shadow:0 0 34px rgba(0,255,170,.12)}
+.card:hover::before,.card:hover::after{width:26px;height:26px;opacity:1}
+
+/* ===== ABOUT ===== */
+.about-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:34px;align-items:start}
+.about-text p{color:var(--muted);line-height:1.85;margin-bottom:16px;font-size:1.02rem}
+.about-text strong{color:var(--text)}
+.about-text .hl{color:var(--accent)}
+.terminal{background:rgba(1,4,8,.92);border:1px solid var(--border);overflow:hidden;font-family:'Fira Code',monospace;font-size:.8rem;box-shadow:0 0 40px rgba(0,255,170,.08)}
+.term-bar{background:rgba(0,255,170,.06);padding:10px 14px;display:flex;gap:7px;align-items:center;border-bottom:1px solid var(--border)}
+.dot{width:10px;height:10px;border-radius:50%}
+.dot.r{background:#ff5f57}.dot.y{background:#febc2e}.dot.g{background:#28c840}
+.term-title{margin-left:10px;color:var(--muted);font-size:.7rem}
+.term-body{padding:18px;line-height:2;color:#9fb3c8}
+.term-body .p{color:var(--accent)}
+.term-body .c{color:var(--accent2)}
+
+/* ===== SKILLS ===== */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
+.skill h3{font-size:1.05rem;margin-bottom:8px;display:flex;align-items:center;gap:10px;font-weight:600;letter-spacing:.04em}
+.skill .icon{font-size:1.25rem}
+.skill p{color:var(--muted);font-size:.88rem;line-height:1.65}
+.bar{height:5px;background:rgba(0,255,170,.08);margin-top:16px;overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));box-shadow:0 0 12px rgba(0,255,170,.6);width:0;transition:width 1.3s ease}
+.skill .pct{float:right;font-family:'Fira Code',monospace;font-size:.7rem;color:var(--accent)}
+
+/* ===== TIMELINE ===== */
+.timeline{position:relative;margin-left:12px;padding-left:36px;border-left:1px solid rgba(0,255,170,.35)}
+.t-item{position:relative;margin-bottom:46px}
+.t-item::before{content:'';position:absolute;left:-44px;top:5px;width:14px;height:14px;background:var(--bg);border:2px solid var(--accent);transform:rotate(45deg);box-shadow:0 0 12px rgba(0,255,170,.6)}
+.t-item .when{color:var(--accent);font-family:'Fira Code',monospace;font-size:.72rem;letter-spacing:.1em}
+.t-item h3{margin:8px 0 4px;font-size:1.15rem;font-weight:600;letter-spacing:.03em}
+.t-item .where{color:var(--accent2);font-size:.9rem;margin-bottom:8px;font-family:'Fira Code',monospace}
+.t-item p{color:var(--muted);font-size:.92rem;line-height:1.7;max-width:640px}
+
+/* ===== PROJECTS & BLOG ===== */
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.proj .tag{display:inline-block;font-family:'Fira Code',monospace;font-size:.68rem;color:var(--accent);border:1px solid rgba(0,255,170,.4);padding:3px 12px;margin-bottom:16px;letter-spacing:.12em}
+.proj h3{font-size:1.12rem;margin-bottom:10px;font-weight:600}
+.proj p{color:var(--muted);font-size:.9rem;line-height:1.7}
+.proj .tech{margin-top:18px;display:flex;gap:8px;flex-wrap:wrap}
+.proj .tech span{font-family:'Fira Code',monospace;font-size:.7rem;color:var(--accent2);background:rgba(0,212,255,.07);border:1px solid rgba(0,212,255,.2);padding:3px 9px}
+.blog-card .date{color:var(--accent);font-family:'Fira Code',monospace;font-size:.7rem;letter-spacing:.12em}
+.blog-card h3{margin:12px 0;font-size:1.08rem;line-height:1.5;font-weight:600}
+.blog-card p{color:var(--muted);font-size:.88rem;line-height:1.7}
+.blog-card .read{display:inline-block;margin-top:16px;color:var(--accent);text-decoration:none;font-size:.8rem;font-family:'Fira Code',monospace}
+.blog-card .read:hover{text-shadow:0 0 10px rgba(0,255,170,.7)}
+
+/* ===== RESUME ===== */
+.resume-box{text-align:center;padding:64px 28px}
+.resume-box h2{font-family:'Orbitron',sans-serif;font-size:1.4rem;margin-bottom:14px;letter-spacing:.08em}
+.resume-box p{color:var(--muted);margin-bottom:30px}
+
+/* ===== CONTACT ===== */
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px;max-width:700px;margin:0 auto}
+.contact-card{text-align:center;text-decoration:none;color:var(--text)}
+.contact-card .ci{font-size:1.9rem;margin-bottom:12px}
+.contact-card h3{font-family:'Orbitron',sans-serif;font-size:.9rem;margin-bottom:8px;letter-spacing:.1em}
+.contact-card p{color:var(--accent);font-size:.82rem;word-break:break-all;font-family:'Fira Code',monospace}
+
+footer{position:relative;z-index:3;border-top:1px solid var(--border);text-align:center;padding:30px;color:var(--muted);font-size:.8rem;font-family:'Fira Code',monospace}
+footer span{color:var(--accent)}
+
+.reveal{opacity:0;transform:translateY(32px);transition:all .7s ease}
+.reveal.show{opacity:1;transform:none}
+
+@media(max-width:768px){
+  .nav-links{position:fixed;top:58px;right:-100%;flex-direction:column;background:var(--bg2);width:72%;height:100vh;padding:40px 30px;transition:right .3s;border-left:1px solid var(--border)}
+  .nav-links.open{right:0}
+  .burger{display:block}
+  .about-grid{grid-template-columns:1fr}
+  .hero-stats{gap:22px}
+}
+</style>
+</head>
+<body>
+
+<!-- BOOT SCREEN -->
+<div id="boot">
+  <div class="boot-inner">
+    <div class="boot-logo">RANVEER.SYS</div>
+    <div id="bootLines"></div>
+    <div class="boot-bar"><i id="bootBar"></i></div>
+    <div class="boot-skip" id="bootSkip">[ PRESS ANY KEY / TAP TO SKIP ]</div>
+  </div>
+</div>
+
+<canvas id="matrix"></canvas>
+<div class="grid-overlay"></div>
+<div class="vignette"></div>
+<div class="scanlines"></div>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#home" class="logo">RV<span>_</span>SYS</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">home</a></li>
+      <li><a href="#about">about</a></li>
+      <li><a href="#skills">skills</a></li>
+      <li><a href="#education">journey</a></li>
+      <li><a href="#projects">projects</a></li>
+      <li><a href="#blog">blog</a></li>
+      <li><a href="#contact">contact</a></li>
+    </ul>
+    <button class="burger" id="burger">&#9776;</button>
+  </div>
+</nav>
+
+<section class="hero" id="home">
+  <div class="status-chip"><span class="pulse"></span> SYSTEM ONLINE &nbsp;|&nbsp; OPEN TO OPPORTUNITIES</div>
+  <p class="hello mono">root@ranveer:~# ./init_portfolio.sh<span class="blink">_</span></p>
+  <h1>I AM <span class="glitch" data-text="RANVEER">RANVEER</span></h1>
+  <div class="typing mono">&gt; <span id="typed"></span><span class="cursor">█</span></div>
+  <p class="intro">BCA graduate with a deep interest in technology, coding and cybersecurity. I explore Linux systems, experiment with security tools on Kali, and use AI to build things faster and smarter.</p>
+  <div class="hero-btns">
+    <a href="resume.html" class="btn btn-primary">&#11015; Download Resume</a>
+    <a href="#contact" class="btn btn-outline">Initiate Contact</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="num">BCA</div><div class="lbl">Graduate</div></div>
+    <div class="stat"><div class="num">10+</div><div class="lbl">Tools Explored</div></div>
+    <div class="stat"><div class="num">&#8734;</div><div class="lbl">Curiosity Level</div></div>
+  </div>
+</section>
+
+<section id="about">
+  <h2 class="sec reveal">About <span>Me</span></h2>
+  <p class="sec-sub reveal">cat /home/ranveer/about.txt</p>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>I'm <strong>Ranveer</strong>, a <strong>BCA graduate</strong> from Lucky Institute of Professional Studies with a passion for everything tech - from the hardware inside a laptop to the software that runs the world.</p>
+      <p>My main focus is <span class="hl">cybersecurity and Linux</span>. I regularly set up and experiment with <strong>Kali Linux</strong>, exploring security tools and understanding how systems work under the hood, alongside sharpening my <strong>coding fundamentals</strong>.</p>
+      <p>I strongly believe in <span class="hl">AI-driven workflows</span> - using modern AI tools to learn faster, automate tasks and build projects efficiently. Currently looking for opportunities to grow in the <strong>tech &amp; security</strong> field.</p>
+    </div>
+    <div class="terminal reveal">
+      <div class="term-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="term-title">ranveer@kali: ~</span></div>
+      <div class="term-body">
+        <div><span class="p">ranveer@kali</span>:~$ cat profile.txt</div>
+        <div><span class="c">name</span>: Ranveer</div>
+        <div><span class="c">degree</span>: BCA [COMPLETED]</div>
+        <div><span class="c">focus</span>: Cybersecurity | Linux</div>
+        <div><span class="c">tools</span>: Kali Linux, AI Stack</div>
+        <div><span class="c">status</span>: OPEN_TO_WORK</div>
+        <div><span class="p">ranveer@kali</span>:~$ <span class="cursor" style="color:var(--accent);animation:blink 1s infinite">█</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <h2 class="sec reveal">Skill <span>Matrix</span></h2>
+  <p class="sec-sub reveal">sudo apt list --installed</p>
+  <div class="skills-grid">
+    <div class="card skill reveal"><h3><span class="icon">&#128013;</span> Linux &amp; Kali <span class="pct">80%</span></h3><p>Installation, configuration and daily use of Linux distros, especially Kali Linux and its security toolset.</p><div class="bar"><i data-w="80%"></i></div></div>
+    <div class="card skill reveal"><h3><span class="icon">&#128274;</span> Cybersecurity <span class="pct">65%</span></h3><p>Security concepts, common vulnerabilities and hands-on exploration of security tools in a safe lab.</p><div class="bar"><i data-w="65%"></i></div></div>
+    <div class="card skill reveal"><h3><span class="icon">&#128187;</span> Hardware <span class="pct">85%</span></h3><p>Strong knowledge of laptops, PCs, components, assembling and troubleshooting hardware issues.</p><div class="bar"><i data-w="85%"></i></div></div>
+    <div class="card skill reveal"><h3><span class="icon">&#127760;</span> Web (HTML/CSS/JS) <span class="pct">60%</span></h3><p>Building clean, responsive and animated web pages - like this portfolio - with core web technologies.</p><div class="bar"><i data-w="60%"></i></div></div>
+    <div class="card skill reveal"><h3><span class="icon">&#9881;&#65039;</span> C / C++ <span class="pct">55%</span></h3><p>Programming fundamentals, logic building and problem solving from BCA coursework.</p><div class="bar"><i data-w="55%"></i></div></div>
+    <div class="card skill reveal"><h3><span class="icon">&#129302;</span> AI Tools <span class="pct">90%</span></h3><p>Using AI tools effectively for coding, learning and productivity - working smart, not just hard.</p><div class="bar"><i data-w="90%"></i></div></div>
+  </div>
+</section>
+
+<section id="education">
+  <h2 class="sec reveal">System <span>Log</span></h2>
+  <p class="sec-sub reveal">journalctl --unit=career --follow</p>
+  <div class="timeline">
+    <div class="t-item reveal">
+      <span class="when">[ COMPLETED ]</span>
+      <h3>Bachelor of Computer Applications (BCA)</h3>
+      <div class="where">Lucky Institute of Professional Studies</div>
+      <p>Computer fundamentals, programming, databases and web technologies. Built a strong base in how computers and software systems work.</p>
+    </div>
+    <div class="t-item reveal">
+      <span class="when">[ RUNNING ]</span>
+      <h3>Self-Learning: Cybersecurity &amp; Linux</h3>
+      <div class="where">Hands-on / Online Resources</div>
+      <p>Continuously exploring Kali Linux, security tools and networking concepts through practical experimentation.</p>
+    </div>
+    <div class="t-item reveal">
+      <span class="when">[ RUNNING ]</span>
+      <h3>AI-Powered Development</h3>
+      <div class="where">Modern AI Toolchain</div>
+      <p>Leveraging AI assistants to code, research and build projects faster - a key skill for the future of tech.</p>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <h2 class="sec reveal">Deployed <span>Projects</span></h2>
+  <p class="sec-sub reveal">ls -la ~/projects/</p>
+  <div class="grid3">
+    <div class="card proj reveal">
+      <span class="tag">SECURITY_LAB</span>
+      <h3>Kali Linux Home Lab</h3>
+      <p>Personal security lab setup with Kali Linux - configuring the environment, exploring built-in tools and practicing security concepts safely.</p>
+      <div class="tech"><span>Kali Linux</span><span>VirtualBox</span><span>Networking</span></div>
+    </div>
+    <div class="card proj reveal">
+      <span class="tag">WEB_DEV</span>
+      <h3>Futuristic Portfolio</h3>
+      <p>This website - boot sequence, matrix rain, glitch effects and HUD design built with pure HTML, CSS and JavaScript on GitLab Pages.</p>
+      <div class="tech"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>GitLab Pages</span></div>
+    </div>
+    <div class="card proj reveal">
+      <span class="tag">HARDWARE</span>
+      <h3>PC Building &amp; Troubleshooting</h3>
+      <p>Hands-on experience assembling systems, installing Windows/Linux dual boot setups and fixing hardware &amp; software issues.</p>
+      <div class="tech"><span>Hardware</span><span>Dual Boot</span><span>Diagnostics</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="blog">
+  <h2 class="sec reveal">Data <span>Logs</span></h2>
+  <p class="sec-sub reveal">tail -f /var/log/blog.log</p>
+  <div class="grid3">
+    <div class="card blog-card reveal">
+      <span class="date">[ COMING_SOON ]</span>
+      <h3>Getting Started with Kali Linux: A Beginner's Guide</h3>
+      <p>How to install Kali Linux, what tools to explore first, and how to practice security skills safely and legally.</p>
+      <a class="read" href="#">&gt; read_more</a>
+    </div>
+    <div class="card blog-card reveal">
+      <span class="date">[ COMING_SOON ]</span>
+      <h3>How AI Tools Changed the Way I Learn Tech</h3>
+      <p>My experience using AI assistants for coding, research and productivity - and why every student should learn this skill.</p>
+      <a class="read" href="#">&gt; read_more</a>
+    </div>
+    <div class="card blog-card reveal">
+      <span class="date">[ COMING_SOON ]</span>
+      <h3>Choosing the Right Laptop for Coding &amp; Security</h3>
+      <p>What specs actually matter for programming and running security tools - practical advice from a hardware enthusiast.</p>
+      <a class="read" href="#">&gt; read_more</a>
+    </div>
+  </div>
+</section>
+
+<section id="resume">
+  <div class="card resume-box reveal">
+    <h2>&#128196; RESUME<span style="color:var(--accent)">.PDF</span></h2>
+    <p>Full details of skills, education and projects. View online or download as PDF.</p>
+    <a href="resume.html" class="btn btn-primary">&#11015; Access Resume</a>
+  </div>
+</section>
+
+<section id="contact">
+  <h2 class="sec reveal" style="text-align:center">Establish <span>Connection</span></h2>
+  <p class="sec-sub reveal" style="text-align:center">ping ranveer --interactive</p>
+  <div class="contact-grid">
+    <a href="mailto:deltaxsys@gmail.com" class="card contact-card reveal">
+      <div class="ci">&#128231;</div>
+      <h3>EMAIL</h3>
+      <p>deltaxsys@gmail.com</p>
+    </a>
+    <a href="https://www.instagram.com/__rv.6xx" target="_blank" rel="noopener" class="card contact-card reveal">
+      <div class="ci">&#128248;</div>
+      <h3>INSTAGRAM</h3>
+      <p>@__rv.6xx</p>
+    </a>
+  </div>
+</section>
+
+<footer>
+  [ Designed &amp; Built by <span>Ranveer</span> ] &nbsp;//&nbsp; &copy; 2026 &nbsp;//&nbsp; Powered by GitLab Pages
+</footer>
+
+<script>
+/* ===== BOOT SEQUENCE ===== */
+const bootEl=document.getElementById('boot');
+const bootLines=document.getElementById('bootLines');
+const bootBar=document.getElementById('bootBar');
+const seq=[
+  {t:'BIOS v4.2 ... <span class="ok">OK</span>',d:220},
+  {t:'Loading kernel modules ........ <span class="ok">OK</span>',d:260},
+  {t:'Mounting /dev/ranveer ......... <span class="ok">OK</span>',d:240},
+  {t:'<span class="info">[INFO]</span> user: RANVEER | role: TECH_ENTHUSIAST',d:300},
+  {t:'Initializing security layer ... <span class="ok">DONE</span>',d:280},
+  {t:'Injecting creativity.dll ...... <span class="ok">DONE</span>',d:240},
+  {t:'<span class="warn">[WARN]</span> excessive curiosity detected. proceeding anyway...',d:340},
+  {t:'Starting portfolio services ... <span class="ok">OK</span>',d:280},
+  {t:'&nbsp;',d:150},
+  {t:'<span class="grant">&gt;&gt; ACCESS GRANTED. WELCOME. &lt;&lt;</span>',d:600}
+];
+let bi=0,bootDone=false;
+function bootStep(){
+  if(bootDone)return;
+  if(bi<seq.length){
+    const line=document.createElement('div');
+    line.innerHTML=seq[bi].t;
+    bootLines.appendChild(line);
+    bootBar.style.width=Math.round(((bi+1)/seq.length)*100)+'%';
+    setTimeout(bootStep,seq[bi].d);
+    bi++;
+  }else{
+    setTimeout(endBoot,500);
+  }
+}
+function endBoot(){
+  if(bootDone)return;
+  bootDone=true;
+  bootEl.classList.add('done');
+  document.body.style.overflow='';
+}
+document.body.style.overflow='hidden';
+setTimeout(bootStep,400);
+bootEl.addEventListener('click',endBoot);
+document.addEventListener('keydown',()=>{if(!bootDone)endBoot();});
+
+/* ===== MATRIX RAIN ===== */
+const canvas=document.getElementById('matrix');
+const ctx=canvas.getContext('2d');
+let W,H,cols,drops;
+const chars='01アイウエオカキクケコ<>/\\{}[]$#@%&*+=';
+function sizeMatrix(){
+  W=canvas.width=window.innerWidth;
+  H=canvas.height=window.innerHeight;
+  cols=Math.floor(W/16);
+  drops=Array(cols).fill(1);
+}
+sizeMatrix();
+window.addEventListener('resize',sizeMatrix);
+function drawMatrix(){
+  ctx.fillStyle='rgba(3,5,9,0.08)';
+  ctx.fillRect(0,0,W,H);
+  ctx.font='13px monospace';
+  for(let i=0;i<drops.length;i++){
+    const ch=chars[Math.floor(Math.random()*chars.length)];
+    ctx.fillStyle=Math.random()>0.975?'#00d4ff':'#00ffaa';
+    ctx.fillText(ch,i*16,drops[i]*16);
+    if(drops[i]*16>H&&Math.random()>0.975)drops[i]=0;
+    drops[i]++;
+  }
+}
+setInterval(drawMatrix,55);
+
+/* ===== TYPING EFFECT ===== */
+const roles=['TECH ENTHUSIAST','CYBERSECURITY LEARNER','LINUX USER','BCA GRADUATE','AI-POWERED BUILDER'];
+let ri=0,ci=0,del=false;
+const typedEl=document.getElementById('typed');
+function type(){
+  const word=roles[ri];
+  typedEl.textContent=word.slice(0,ci);
+  if(!del){ci++;if(ci>word.length){del=true;setTimeout(type,1600);return}}
+  else{ci--;if(ci===0){del=false;ri=(ri+1)%roles.length}}
+  setTimeout(type,del?40:85);
+}
+type();
+
+/* ===== MOBILE NAV ===== */
+const burger=document.getElementById('burger');
+const navLinks=document.getElementById('navLinks');
+burger.addEventListener('click',()=>navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navLinks.classList.remove('open')));
+
+/* ===== SCROLL REVEAL + SKILL BARS ===== */
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('show');
+      e.target.querySelectorAll('.bar i').forEach(b=>b.style.width=b.dataset.w);
+      io.unobserve(e.target);
+    }
+  });
+},{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
